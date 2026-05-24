@@ -1,0 +1,9 @@
+/** Criar uma network */
+docker network create filmes-network
+
+/** Banco de Dados PostgreSQL*/
+docker run --name filmesdb -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=filmes -p 5432:5432 --network filmes-network postgres:16.3
+
+/** PgAdmin 4*/
+docker run --name pgadmin4_f -p 15432:80 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=admin --network filmes-network dpage/pgadmin4:8.9
+
